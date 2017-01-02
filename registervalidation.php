@@ -33,37 +33,38 @@
                 <div class="email-content">
                 <?php
                     session_start();
-                    include_once ('config/config.php');
-                    include_once ('config/init.php');
-                    $error = "";
+                    require_once 'include/classes/class.user.php';
+                    $user = new USER;
+                    
                     if (isset($_POST["register"])) {
                         $fname = trim($_POST["fname"]);
                         $lname = trim($_POST["lname"]);
                         $email = trim($_POST["email"]);
                         $password = trim($_POST["password"]);
                         $repassword = trim($_POST["repassword"]);
-                        $hash = md5(rand(0, 1000));
+                        $hash = md5(uniqid(rand()));
                     
                         if ($fname == "" || $lname == "" || $email == "" || $password == "" || $repassword == "") {
                             $_SESSION["message"] = 'Must fill all the above fields.';
-                            header('location: register.php');
+                            $user->redirect("register.php");
+                            exit;
                         } else {
                             if (strlen($fname) < 2 || strlen($lname) < 2) {
                                 $_SESSION["message"] = "Name must be more than 2 characters";
-                                header('location: register.php');
-                                die();
+                                $user->redirect("register.php");
+                                exit;
                             }
                             if (!ctype_alpha($fname) || !ctype_alpha($lname)) {
                                 $_SESSION["message"] = "Name must contains only charactors";
-                                header('location: register.php');
-                                die();
+                                $user->redirect("register.php");
+                                exit;
                             }
                             
                             $email = filter_var($email, FILTER_SANITIZE_EMAIL);
                             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                                 $_SESSION["message"] = "Invalid email address.";
-                    		header('location: register.php');
-                                die();
+                		      $user->redirect("register.php");
+                                exit;
                             }
                      
                     #	if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email)){
@@ -73,28 +74,13 @@
                     #	}
                             
                             if ($password == $repassword) {
-                                $result = $mysqli->query("INSERT INTO users(firstname, lastname, password, email, hash) VALUES('$fname', '$lname', '$password', '$email', '$hash')");
-                                if ($result) {
-                                    require 'PHPMailer/PHPMailerAutoload.php';
-                                    $mail = new PHPMailer;
+                                
+                                $result = $user->register($fname, $lname, $email, $password, $hash);
+                                if($result){
+                                    $id = $user->lastID();
+                                    $key = base64_encode($id);
                                     
-                                    $mail->isSMTP();                                   // Set mailer to use SMTP
-                                    $mail->Host = 'smtp.gmail.com';                    // Specify main and backup SMTP servers
-                                    $mail->SMTPAuth = true;                            // Enable SMTP authentication
-                                    $mail->Username = 'satish4link@gmail.com';          // SMTP username
-                                    $mail->Password = 'leaked55'; // SMTP password
-                                    $mail->SMTPSecure = 'tls';                         // Enable TLS encryption, `ssl` also accepted
-                                    $mail->Port = 587;                                 // TCP port to connect to
-                                    
-                                    $mail->setFrom('satish4link@gmail.com', 'MensFashain');
-                                    //$mail->addReplyTo('satish4link@gmail.com', 'MensFashain');
-                                    $mail->addAddress('gamer4link@gmail.com');   // Add a recipient
-                                    //$mail->addCC('cc@example.com');
-                                    //$mail->addBCC('bcc@example.com');
-                                    
-                                    $mail->isHTML(true);  // Set email format to HTML
-                                    
-                                    $bodyContent = nl2br('Thanks for signing up!
+                                    $message = nl2br('Thanks for signing up!
                                                     Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
                                                      
                                                     ---------------------------------------------
@@ -104,25 +90,21 @@
                                                     ---------------------------------------------
                                                      
                                                     Please click this link to activate your account:
-                                                    http://localhost/men/emailVerification.php?email='.$email.'&hash='.$hash.'
+                                                    http://localhost/men-s-fashain/emailVerification.php?id='.$key.'&hash='.$hash.'
                                                      
                                                     ');
+                                                    
+                                    $subject = 'Signup | Verification';
+                                    $user->send_mail($email, $message, $subject);
                                     
-                                    $mail->Subject = 'Signup | Verification';
-                                    $mail->Body    = $bodyContent;
-                                    
-                                    if(!$mail->send()) {
-                                        echo 'Message could not be sent.';
-                                        echo 'Mailer Error: ' . $mail->ErrorInfo;
-                                    } else {
-                                        echo "<h1>Welcome, You are registered. Now you can check your email for email verification.</h1>";
-                                    }
-                                } else {
-                                    echo $mysqli->error;
+                                    echo "<h2><strong>Success!</strong> You are registered. We've sent an email to $email. Now you can check your email for email verification.</h2>";  
+                                }else{
+                                    echo '<h2>Message could not be sent. Please try again. Thank You.</h2>';
                                 }
                             } else {
                                 $_SESSION["message"] = 'Password did not match.';
-                                header('location: register.php');
+                                $user->redirect("register.php");
+                                exit;
                             }
                         }
                     }
