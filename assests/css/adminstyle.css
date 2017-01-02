@@ -1,0 +1,77 @@
+body{
+
+}
+.clearfix{
+	clear:both;
+}
+.no-padding{
+	padding-left:0!important;
+	padding-right:0!important;
+}
+.no-margin{
+	margin-left:0!important;
+	margin-right:0!important;
+}
+
+/*header section starts */
+
+.header{
+    border-bottom: 1px solid #448aad;
+}
+.admin h1{
+    text-transform: uppercase;
+    color: #448aad;
+    padding:20px;
+}
+/* form design */
+.form{
+    background: rgba(68, 138, 173, 0.59);
+    padding:20px;
+    width:100%;
+    margin: 100px 0;
+}
+.form h3{
+    color:#ffffff;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 0;
+}
+.form form input{
+    padding: 5px 10px;
+    width:100%;
+}
+.form form input:last-child{
+    margin-top: 10px;
+    background: rgba(68, 138, 173, 0.59);
+    color: #ffffff;
+    border: 1px solid #ffffff;
+}
+.form form input:last-child:hover{
+    background: #448aad;
+}
+.form ul li{
+    color:#ffffff;
+}
+.form ul li a:link, .form ul li a:visited{
+    color:#ffffff;
+}
+/* footer section starts */
+.footer-top-border{
+    border-top:1px solid #448aad;
+    margin-top:100px;
+}
+.copyright{
+    padding:15px 0;
+}
+.copyright p{
+    color:#448aad;
+}
+.terms-help{
+    padding:15px 0;
+    text-transform: capitalize;
+    text-align: right;
+}
+
+
+
+

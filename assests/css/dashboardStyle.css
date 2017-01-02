@@ -1,0 +1,153 @@
+body{
+	font-family: 'Raleway', sans-serif;
+	background: #e5e5e5!important;
+}
+.clearfix{
+	clear:both;
+}
+.no-padding{
+	padding-left: 0!important;
+	padding-right:0!important;
+}
+.no-margin{
+	margin-left:0!important;
+	margin-right:0!important;
+}
+/* for dashboard page */
+/* for navigation content*/
+.navigation-content{
+    height:100%;
+}
+
+.side-menu-bg{
+	background: #448aad;
+    height: 100vh;
+}
+.side-menu{
+	padding:22px 0;
+}
+.side-menu ul li{
+	text-align: center;
+}
+.side-menu ul li a:link,
+.side-menu ul li a:visited{
+	text-transform: capitalize;
+	text-decoration: none;
+	color:#ffffff;
+	display:block;
+	padding:12px 0;
+    border-radius:5px;
+}
+.side-menu ul li a:hover{
+	background: #4d5f84;
+}
+.side-menu ul li i{
+	font-size:43px;
+}
+.menu-trigger{
+	display: none;
+}
+.main-title{
+	background: #ffffff;
+	text-align:center;
+    padding-bottom:15px;
+}
+.main-title h3{
+	text-transform: uppercase;
+	color:#448aad;
+}
+.db-contents{
+    background: #ffffff;
+    padding-bottom:20px;
+}
+.db-contents h3{
+    text-transform: capitalize;
+    color:#448aad;
+    padding:10px;
+}
+.db-contents h3 a:link, .db-contents h3 a:visited{
+    text-decoration: none;
+}
+.db-contents table{
+    margin: 0 20px;
+}
+.db-contents table tr th, .db-contents table tr td{
+    padding:5px 10px;
+    color:#448aad;
+}
+.db-contents table tr th{
+    border:2px solid #448aad;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.db-contents table tr td{
+    border:1px solid #448aad;
+}
+form{
+    padding:0 20px;
+}
+.db-contents form input, .db-contents form textarea{
+    width:300px;
+    padding:5px 10px;
+    margin:5px 0;
+    border:1px solid #448aad;
+}
+.db-contents form input:last-child{
+    width:100px;
+    border-radius:5px;
+    color:#448aad;
+    background: #ffffff;
+}
+.db-contents form input:last-child:hover{
+    background: #448aad;
+    color:#ffffff;
+}
+
+@media screen and (max-width:768px){
+	.form{
+		margin:100px 0px;
+	}
+	.navigation-logo{
+		text-align: center;
+	}
+	.navigation-user h3, .navigation-user i{
+		font-size:20px;
+		color:#ffffff;
+		text-align: right;
+	}
+	.menu-trigger{
+		display: block;
+		position: absolute;
+		top: -40px;
+	}
+	.menu-trigger i{
+		font-size:30px;
+		color:#ffffff;
+		cursor:pointer;
+	}
+	.side-menu{
+		padding:0;
+		display:none;
+	}
+	.side-menu ul li{
+		border-bottom:2px solid gray;
+	}
+	.side-menu ul li:nth-child(6){
+		border:0;
+	}
+	.nav-expanded{
+		display:block;
+	}
+	
+	.traders-box{
+		width:100%;
+		margin:5px 0;
+	}
+	.traders-update form input[type="text"]{
+		width:95%;
+
+	}
+}
+@media screen and (max-width:992px){
+
+}
