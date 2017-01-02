@@ -35,17 +35,15 @@
                     require_once 'include/classes/class.user.php';
                     $user = new USER;
                     
-                    //if(empty($_GET['key']) && empty($_GET['code']))
-                    //{
-                    //	$user->redirect('index.php');
-                    //}
-                    echo $_GET['key'];
-                    echo $_GET['code'];
-                    
-                    if(isset($_GET['key']) && isset($_GET['code']))
+                    if(empty($_GET['id']) && empty($_GET['hash']))
                     {
-                    	$id = base64_decode($_GET['key']);
-                    	$code = $_GET['code'];
+                    	$user->redirect('index.php');
+                    }
+                    
+                    if(isset($_GET['id']) && isset($_GET['hash']))
+                    {
+                    	$id = base64_decode($_GET['id']);
+                    	$code = $_GET['hash'];
                     	
                     	$statusY = 1;
                     	$statusN = 0;

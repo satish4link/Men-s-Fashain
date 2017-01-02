@@ -79,6 +79,7 @@
                                 if($result){
                                     $id = $user->lastID();
                                     $key = base64_encode($id);
+                                    $id = $key;
                                     
                                     $message = nl2br('Thanks for signing up!
                                                     Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
@@ -90,7 +91,7 @@
                                                     ---------------------------------------------
                                                      
                                                     Please click this link to activate your account:
-                                                    http://localhost/men-s-fashain/emailVerification.php?id='.$key.'&hash='.$hash.'
+                                                    http://localhost/men-s-fashain/emailVerification.php?id='.$id.'&hash='.$hash.'
                                                      
                                                     ');
                                                     

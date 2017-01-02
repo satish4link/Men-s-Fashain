@@ -55,28 +55,33 @@ class USER
 			
 			if($stmt->rowCount() == 1)
 			{
-				if($userRow['active']==1)
+				if($userRow['active']== "1")
 				{
 					if($userRow['password']==md5($password))
 					{
 						$_SESSION['userSession'] = $userRow['user_id'];
+                        $_SESSION['userSessionName'] = $userRow['fname'];
+                        
 						return true;
 					}
 					else
 					{
-						header("Location: register.php?error1");
+						header("Location: login.php?error1");
+                        $_SESSION['message'] = "Password should be hashed.";
 						exit;
 					}
 				}
 				else
 				{
-					header("Location: register.php?error2");
+					header("Location: login.php?error2");
+                    $_SESSION['message'] = "Your account is not activate.";
 					exit;
 				}	
 			}
 			else
 			{
-				header("Location: register.php?error3");
+				header("Location: login.php?error3");
+                $_SESSION['message'] = "No data found in database.";
 				exit;
 			}		
 		}
