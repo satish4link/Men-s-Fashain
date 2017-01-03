@@ -16,14 +16,17 @@
                 <th>delete</th>
             </tr>
         <?php
-            include("../config/config.php");
-            include("../config/init.php");
+
+        require_once '../include/classes/class.admin.php';
+        $admin=new ADMIN;
+            
             
             if(isset($_GET["mode"])){
                 $mode = $_GET["mode"];
                 if($mode == "del"){
                     $id = $_GET["id"];
-                    $result = $mysqli->query("DELETE FROM contactus WHERE contact_id = '$id'");
+                    $result = $admin->runQuery("DELETE FROM contactus WHERE contact_id = '$id'");
+                    $result->execute();
                 }
                 if($result){
                     echo "<p>1 row deleted.</p>";
@@ -32,7 +35,7 @@
 
             function displayData($result)
             {
-                while ($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     print "<tr >";
                         print "<td>".$row["contact_id"] . "</td>";
                         print "<td>".$row["name"] . "</td>";
@@ -42,9 +45,15 @@
                     print "</tr>";
                 }
             }
-            //Select Data
-            $result = $mysqli->query("SELECT * FROM contactus");
-            displayData($result);
+
+            try{
+                $result = $admin->runQuery("SELECT * FROM contactus");
+                $result->execute();
+                displayData($result);
+            }catch(PDOException $ex){
+                echo $ex->getMessage();
+            }
+            
         ?>
     </div>
 </div>

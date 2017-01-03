@@ -7,28 +7,35 @@
                     <div class="contact">
                         <h2>contact us</h2>
                         <?php
-                            include_once('config/config.php');
-                            include_once('config/init.php');
-                            $error = "";
+                            require_once 'include/classes/class.user.php';
+                            $user = new USER;
+                            
                             if (isset($_POST["contactus"])) {
                                 $name = trim($_POST["name"]);
                                 $email = trim($_POST["email"]);
                                 $message = trim($_POST["message"]);
                             
                                 if ($name == "" || $email == "" || $message == "") {
-                                    echo 'Must fill all the above fields.';
+                                    echo '*Must fill all the above fields*';
                                 } else {
                                     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
                                     if (strlen($name) < 2 || strlen($name) < 2) {
-                                        echo "Name must be more than 2 characters";
+                                        echo "*Name must be more than 2 characters*";
                                     }else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                                        echo "Invalid email address.";
+                                        echo "*Invalid email address*";
                                     }else{
-                                        $result = $mysqli->query("INSERT INTO contactus(name, email, message) VALUES('$name', '$email', '$message')");
-                                        if ($result) {
-                                            echo "Thanks for your message.";
-                                        } else {
-                                            echo $mysqli->error;
+                                        try{
+                                            $result = $user->runQuery("INSERT INTO contactus(name, email, message) VALUES(:u_name, :u_email, :message)");
+                                            $result->bindParam(":u_name", $name);
+                                            $result->bindParam(":u_email", $email);
+                                            $result->bindParam(":message", $message);
+                                            $result->execute();
+                                            
+                                            if($result){
+                                                echo "Thanks for contacting us.";
+                                            }
+                                        }catch(PDOException $ex){
+                                            echo $ex->getMessage();
                                         }
                                     }
                                 }

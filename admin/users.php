@@ -23,14 +23,15 @@ include ("header.php");
                 <th>delete</th>
             </tr>
         <?php
-            include("../config/config.php");
-            include("../config/init.php");
+            require_once '../include/classes/class.admin.php';
+            $admin=new ADMIN;
             
             if(isset($_GET["mode"])){
                 $mode = $_GET["mode"];
                 if($mode == "del"){
                     $id = $_GET["id"];
-                    $result = $mysqli->query("DELETE FROM users WHERE user_id = '$id'");
+                    $result = $admin->runQuery("DELETE FROM users WHERE user_id = '$id'");
+                    $result->execute();
                 }
                 if($result){
                     echo "<p>1 row deleted.</p>";
@@ -39,7 +40,7 @@ include ("header.php");
 
             function displayData($result)
             {
-                while ($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     print "<tr >";
                         print "<td>".$row["user_id"] . "</td>";
                         print "<td>".$row["firstname"] . "</td>";
@@ -55,9 +56,13 @@ include ("header.php");
                     print "</tr>";
                 }
             }
-            //Select Data
-            $result = $mysqli->query("SELECT * FROM users");
-            displayData($result);
+            try{
+                $result =$admin->runQuery("SELECT * FROM users");
+                $result->execute();
+                displayData($result);
+            }catch(PDOException $ex){
+                echo $ex->getMessage();
+            }
         ?>
     </div>
 </div>

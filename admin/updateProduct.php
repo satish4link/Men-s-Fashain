@@ -8,8 +8,8 @@ include ("header.php");
     <div class="db-contents">
         <h3>top-wear products</h3>
         <?php
-            include_once('../config/config.php');
-            include_once('../config/init.php');
+            require_once '../include/classes/class.admin.php';
+            $admin=new ADMIN;
             
             $id = $_GET['id'];
             
@@ -24,25 +24,31 @@ include ("header.php");
 					if($cat_id  == "" || $product_name == "" || $description == "" || $product_rate == ""){
 						$error.= "<p>All fields must be filled up</p>";
 					}
-					if($error == ""){
-						if(is_uploaded_file($_FILES['prod_image']['tmp_name'])){
-							move_uploaded_file($_FILES['prod_image']['tmp_name'],"../assests/images/".$_FILES['prod_image']['name']);
-							$product_image = $_FILES['prod_image']['name'];
+					try{
+						if($error == ""){
+							if(is_uploaded_file($_FILES['prod_image']['tmp_name'])){
+								move_uploaded_file($_FILES['prod_image']['tmp_name'],"../assests/images/".$_FILES['prod_image']['name']);
+								$product_image = $_FILES['prod_image']['name'];
+							}
+							$result = $admin->runQuery("UPDATE products SET category_id = '$cat_id',  product_name = '$product_name', product_desc = '$description', product_rate = '$product_rate', product_image = '$product_image' WHERE product_id = '$id'");
+							$result->execute();
+						}else{
+				             $result = $admin->runQuery("UPDATE products SET category_id = '$cat_id',  product_name = '$product_name', product_desc = '$description', product_rate = '$product_rate' WHERE product_id = '$id'");
+				             $result->execute();
 						}
-						$result = $mysqli->query("UPDATE products SET category_id = '$cat_id',  product_name = '$product_name', product_desc = '$description', product_rate = '$product_rate', product_image = '$product_image' WHERE product_id = '$id'");
-					}else{
-			             $result = $mysqli->query("UPDATE products SET category_id = '$cat_id',  product_name = '$product_name', product_desc = '$description', product_rate = '$product_rate' WHERE product_id = '$id'");
+	                    if($result){
+						   echo "<p>Data Updated.</p>";
+						}
+					}catch(PDOException $ex){
+						echo $ex->getMessage();
 					}
-                    if($result){
-					   echo "<p>Data Updated.</p>";
-					}else{
-					   echo $mysqli->error;
-					}	
+						
                 }else{
 					echo $error;
                 } 
-				$result = $mysqli->query(" SELECT * FROM products where product_id='$id'");
-				while($row = mysqli_fetch_assoc($result)){
+				$result = $admin->runQuery(" SELECT * FROM products where product_id='$id'");
+				$result->execute();
+				while($row = $result->fetch(PDO::FETCH_ASSOC)){
 					$cat_id = $row['category_id'];
 					$product_name = $row['product_name'];
                     $description = $row['product_desc'];
@@ -51,7 +57,21 @@ include ("header.php");
 				}
 			?>
         <form method="post" enctype="multipart/form-data"> 
-            <input type="text" name="cat_id" value="<?php echo $cat_id ?>" /><br />
+            <select name="cat_id" id="cat_id" style="width:300px;">
+						<option value="">---Select Category---</option>
+						<?php
+							$sql1 = "SELECT * FROM category";
+							$result1 = $admin->runQuery($sql1);
+							$result1->execute();
+							while ($row = $result1->fetch(PDO::FETCH_ASSOC)) {
+								if ($cat_id == $row['cat_id']) {
+									echo "<option value='" . $cat_id . "' selected>" . $row['cat_name'] . "</option>";
+								} else {
+									echo "<option value='" . $cat_id . "'>" . $row['cat_name'] . "</option>";
+								}
+							}
+						?>
+			</select><br />
             <input type="text" name="prod_name" value="<?php echo $product_name?>" /><br />
             <textarea placeholder="Product description" name="prod_desc" rows="5"><?php echo $description ?></textarea><br />
             <input type="text" name="prod_rate" value="<?php echo $product_rate ?>" /><br />

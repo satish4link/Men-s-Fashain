@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -42,7 +44,12 @@
                         <form method="post" action="validation.php">
                             <input type="text" name="username" placeholder="USERNAME"/>
                             <input type="password" name="password" placeholder="PASSWORD"/>
-                            <input type="submit" value="login" />
+                            <?php
+                                if(isset($_SESSION['message'])){
+                                    echo "<p style='color:red;'>".$_SESSION['message']."</p>";
+                                }
+                            ?>
+                            <input type="submit" value="login" name="login"/>
                         </form>
                     </div>
                 </div>
