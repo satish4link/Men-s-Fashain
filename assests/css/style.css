@@ -317,6 +317,12 @@ body{
     color: #448aad;
     text-align: center;
 }
+.filter-data{
+    margin: 0 0 10px 0;
+}
+.filter-data table tr form td input[type="text"]{
+    padding:5px;
+}
 .product-data{
     border: 1px solid #448aad;
     margin:5px 0;

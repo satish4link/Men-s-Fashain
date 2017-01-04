@@ -75,44 +75,16 @@
                         <h2>top wear products</h2>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-12 col-md-4"></div>
-                <div class="col-xs-12 col-sm-12 col-md-4">
-                    <div class="filter-data">
-                        <table>
-                            <tr>
-                            <form method="post">
-                                <td><input type="text" placeholder="Search, What are you looking for..." name="search" style="width: 300px; padding: 5px;" /></td>
-                                <td><input type="submit" value="Go" name="go" style="padding: 5px 10px;"/></td>
-                            </form>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-4"></div>
-                <div class="clearfix"></div>
                     <?php
                         require_once 'include/classes/class.user.php';
                         $user = new USER;
                         
-                        if(isset($_POST['go'])){
-                            
-                            $search = $_POST['search'];
-                            try{
-                                $result = $user->runQuery("SELECT * FROM products WHERE CONCAT (product_name, product_desc, product_rate) LIKE '%".$search."%' AND category_id = 1");
-                                $result->execute();
-                                displayData($result);
-                            }catch(PDOException $ex){
-                                echo $ex->getMessage();
-                            }
-                            
-                        }else{
-                            try{
-                                $result = $user->runQuery("SELECT * FROM products WHERE category_id = 1");
-                                $result->execute();
-                                displayData($result);
-                            }catch(PDOException $ex){
-                                echo $ex->getMessage();
-                            }
+                        try{
+                            $result = $user->runQuery("SELECT * FROM products WHERE category_id = 2");
+                            $result->execute();
+                            displayData($result);
+                        }catch(PDOException $ex){
+                            echo $ex->getMessage();
                         }
                         
                         function displayData($result)
