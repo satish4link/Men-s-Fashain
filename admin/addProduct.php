@@ -13,14 +13,14 @@ include ("header.php");
 
 				$error="";
 				if(isset($_POST["insert"])){
-					$cat_id = $_POST["cat_id"];
+					$category_id = $_POST["category_id"];
 					$product_name = $_POST["prod_name"];
                     $description = $_POST["prod_desc"];
 					$product_rate = $_POST["prod_rate"];
                     $product_image = "";
 
-					if($cat_id  == "" || $product_name == "" || $description == "" || $product_rate == ""){
-						$error.= "<p>All fields must be filled up</p>";
+					if($category_id  == "" || $product_name == "" || $description == "" || $product_rate == ""){
+						$error.= "<p>All fields must be filled up</p>".$category_id."HELLO";
 					}
 					if($error == ""){
 						if(is_uploaded_file($_FILES['prod_image']['tmp_name'])){
@@ -28,7 +28,7 @@ include ("header.php");
 							$product_image = $_FILES['prod_image']['name'];
 						}
 						try{
-							$result = $admin->runQuery("INSERT INTO products(category_id, product_name, product_desc, product_rate, product_image) VALUES('$cat_id', '$product_name', '$description', '$product_rate', '$product_image')");
+							$result = $admin->runQuery("INSERT INTO products(category_id, product_name, product_desc, product_rate, product_image) VALUES('$category_id', '$product_name', '$description', '$product_rate', '$product_image')");
 							$result->execute();
 							if($result){
 								echo "<p>Data Inserted.</p>";
@@ -42,7 +42,7 @@ include ("header.php");
 				}
 			?>
         <form method="post" enctype="multipart/form-data"> 
-            <select name="cat_id" id="cat_id" style="width:300px;">
+            <select name="category_id" id="cat_id" style="width:300px;">
 						<option value="">---Select Category---</option>
 						<?php
 							$sql1 = "SELECT * FROM category";
@@ -50,10 +50,10 @@ include ("header.php");
 							$result1->execute();
 							while ($row = $result1->fetch(PDO::FETCH_ASSOC)) {
 								if ($cat_id == $row['cat_id']) {
-									echo "<option value='" . $cat_id . "' selected>" . $row['cat_name'] . "</option>";
-								} else {
-									echo "<option value='" . $cat_id . "'>" . $row['cat_name'] . "</option>";
-								}
+    								echo "<option value='" . $row['cat_id'] . "' selected>" . $row['cat_name'] . "</option>";
+    							} else {
+    								echo "<option value='" . $row['cat_id'] . "'>" . $row['cat_name'] . "</option>";
+    							}
 							}
 						?>
 			</select><br />
