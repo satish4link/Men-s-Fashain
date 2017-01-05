@@ -7,13 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Men's Fashain</title>
 	<!-- css link -->
-	<link rel="stylesheet" type="text/css" href="assests\css\reset.css" />
+	<link rel="stylesheet" type="text/css" href="assests/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="assests/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="assests/slick/slick-theme.css"/>
-	<link rel="stylesheet" type="text/css" href="assests\css\style.css" />
+	<link rel="stylesheet" type="text/css" href="assests/css/style.css" />
         
 	<!-- font awesome -->
-	<link rel="stylesheet" type="text/css" href="assests\css\font-awesome\css\font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="assests/css/font-awesome/css/font-awesome.min.css" />
 
 	<!-- bootstrap link -->
 	<link rel="stylesheet" type="text/css" href="assests/css/bootstrap/css/bootstrap.min.css" />
