@@ -45,6 +45,7 @@ session_start();
                             <li><a href="topwear.php">top wear</a></li>
                             <li><a href="#">foot wear</a></li>
                             <li><a href="#">accessories</a></li>
+                            <li><a href="#">contact us</a></li>
                         </ul>
                     </div>
 				</div>

@@ -44,6 +44,7 @@
                             <li><a href="topwear.php">top wear</a></li>
                             <li><a href="#">foot wear</a></li>
                             <li><a href="#">accessories</a></li>
+                            <li><a href="about.php">contact us</a></li>
                         </ul>
                     </div>
 				</div>

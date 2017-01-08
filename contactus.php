@@ -6,6 +6,9 @@
                 <div class="col-xs-12 col-sm-12 col-md-8 no-padding">
                     <div class="contact">
                         <h2>contact us</h2>
+                        <p class="log"></p>
+                        <i class="fa fa-angle-double-down" id="in" aria-hidden="true"></i>
+                        <i class="fa fa-angle-double-up" id="out" aria-hidden="true"></i>
                         <?php
                             require_once 'include/classes/class.user.php';
                             $user = new USER;
@@ -41,12 +44,39 @@
                                 }
                             }
                         ?>
+                        <script type = "text/javascript" language = "javascript">
+                         $(document).ready(function() {
+                            
+                            $(".fadeview").hide();
+                            $("#out").hide();
+                            $(".log").text('Click below');
+                
+                            $("#in").click(function(){
+                               $(".fadeview").fadeIn( 'slow', function(){ 
+                                  $("#in").hide();
+                                  $("#out").show();
+                                  $(".log").hide();
+                               });
+                            });
+                
+                            $("#out").click(function(){
+                               $(".fadeview").fadeOut( 'slow', function(){
+                                    $("#in").show();
+                                    $("#out").hide();
+                                    $("p").show();
+                               });
+                            });
+                				
+                         });
+                      </script>
+                        <div class="fadeview">
                         <form method="post">
                             <input type="text" name="name" placeholder="NAME" />
                             <input type="text" name="email" placeholder="EMAIL" /><br />
                             <textarea rows="5" name="message" placeholder="MESSAGE"></textarea><br />
                             <input type="submit" name="contactus" value="SUBMIT" />
                         </form>
+                        </div>                     
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-2"></div>

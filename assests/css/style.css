@@ -280,6 +280,11 @@ body{
     color:#448aad;
     text-transform: uppercase;
 }
+.contact i{
+    font-size: 30px;
+    color:#448aad;
+    cursor: pointer;
+}
 .contact form{
     padding:10px 0;
 }
