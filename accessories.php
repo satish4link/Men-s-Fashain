@@ -22,7 +22,7 @@
 	<!-- jQuery link-->
 	<script src="assests/js/jquery-1.12.2.js"></script>
 	<script src="assests/js/isotope.pkgd.min.js"></script>
-	<script src="ajax/ajax.js"></script>
+	<script src="ajax/ajax2.js"></script>
 
 </head>
 <body>
