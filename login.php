@@ -44,7 +44,7 @@ session_start();
                         <ul>
                             <li><a href="topwear.php">top wear</a></li>
                             <li><a href="#">foot wear</a></li>
-                            <li><a href="#">accessories</a></li>
+                            <li><a href="accessories.php">accessories</a></li>
                             <li><a href="#">contact us</a></li>
                         </ul>
                     </div>
@@ -74,18 +74,18 @@ session_start();
                     <div class="form">
                         <h3>login</h3>
                         <?php
-                            if(isset($_SESSION['resmessage'])){
-                                echo "<span>".$_SESSION['resmessage']."</span>";
-                            }
-                        ?>
+if (isset($_SESSION['resmessage'])) {
+    echo "<span>" . $_SESSION['resmessage'] . "</span>";
+}
+?>
                         <form method="post" action="loginvalidation.php">
                             <input name="email" type="text" placeholder="EMAIL" />
                             <input name="password" type="password" placeholder="PASSWORD" />
                             <?php
-                                if(isset($_SESSION['message'])){
-                                    echo "<p>".$_SESSION['message']."</p>";
-                                }
-                            ?>
+if (isset($_SESSION['message'])) {
+    echo "<p>" . $_SESSION['message'] . "</p>";
+}
+?>
                             <input type="submit" name="login" value="LOGIN"/>     
                         </form>
                         <ul>

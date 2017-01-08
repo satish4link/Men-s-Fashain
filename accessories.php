@@ -22,7 +22,7 @@
 	<!-- jQuery link-->
 	<script src="assests/js/jquery-1.12.2.js"></script>
 	<script src="assests/js/isotope.pkgd.min.js"></script>
-	<script src="assests/js/custom.js"></script>
+	<script src="ajax/ajax.js"></script>
 
 </head>
 <body>
@@ -76,38 +76,7 @@ if (isset($_SESSION['authenticatedUserName'])) {
                         <h2>top wear products</h2>
                     </div>
                 </div>
-                    <?php
-require_once 'include/classes/class.user.php';
-$user = new USER;
-
-try {
-    $result = $user->runQuery("SELECT * FROM products WHERE category_id = 2");
-    $result->execute();
-    displayData($result);
-}
-catch (PDOException $ex) {
-    echo $ex->getMessage();
-}
-
-function displayData($result)
-{
-    $counter = 0;
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        print "<div class='col-xs-12 col-sm-4 col-md-3'>";
-        print "<div class='product-data'>";
-        print "<img src='assests/images/" . $row["product_image"] . "'>";
-        print "<b>" . $row["product_name"] . "</b><br/>";
-        print "<p>" . substr($row['product_desc'], 0, 30) . "</p>";
-        print "<p>Price: &#8377;" . $row["product_rate"] . "</p>";
-        print "</div>";
-        print "</div>";
-        $counter = ++$counter;
-        if (($counter) % 4 == 0) {
-            print "<div class='clearfix'></div>";
-        }
-    }
-}
-?>
+                <div class="result">No Products Found</div>
             </div>
         </div>
     </section>

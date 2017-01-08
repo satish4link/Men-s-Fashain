@@ -41,7 +41,7 @@
                         <ul>
                             <li><a href="topwear.php">top wear</a></li>
                             <li><a href="bottomwear.php">bottom wear</a></li>
-                            <li><a href="#">accessories</a></li>
+                            <li><a href="accessories.php">accessories</a></li>
                             <li><a href="about.php">contact us</a></li>
                         </ul>
                     </div>
@@ -50,16 +50,17 @@
                     <div class="user-account">
                         <ul>
                             <?php
-                                if(isset($_SESSION['authenticatedUserName'])){
-                                    $user_name = $_SESSION['authenticatedUserName'];
-                                    $user_id = $_SESSION["userID"];
-                                    echo "<li><a href='logout.php'>log out</a></li>
-                                    <li><a href='myAccount.php?id=$user_id'>".$user_name."</a></li>";
-                                }else{
-                                    echo "<li><a href='login.php'>log in</a></li>
+if (isset($_SESSION['authenticatedUserName'])) {
+    $user_name = $_SESSION['authenticatedUserName'];
+    $user_id = $_SESSION["userID"];
+    echo "<li><a href='logout.php'>log out</a></li>
+                                    <li><a href='myAccount.php?id=$user_id'>" .
+        $user_name . "</a></li>";
+} else {
+    echo "<li><a href='login.php'>log in</a></li>
                                     <li><a href='register.php'>register</a></li>";
-                                }
-                            ?>
+}
+?>
                         </ul>
                     </div>
                 </div>
@@ -92,49 +93,52 @@
                 <div class="col-xs-12 col-sm-12 col-md-4"></div>
                 <div class="clearfix"></div>
                     <?php
-                        require_once 'include/classes/class.user.php';
-                        $user = new USER;
-                        
-                        if(isset($_POST['go'])){
-                            
-                            $search = $_POST['search'];
-                            try{
-                                $result = $user->runQuery("SELECT * FROM products WHERE CONCAT (product_name, product_desc, product_rate) LIKE '%".$search."%' AND category_id = 1");
-                                $result->execute();
-                                displayData($result);
-                            }catch(PDOException $ex){
-                                echo $ex->getMessage();
-                            }
-                            
-                        }else{
-                            try{
-                                $result = $user->runQuery("SELECT * FROM products WHERE category_id = 1");
-                                $result->execute();
-                                displayData($result);
-                            }catch(PDOException $ex){
-                                echo $ex->getMessage();
-                            }
-                        }
-                        
-                        function displayData($result)
-                        {
-                            $counter = 0;
-                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                                print "<div class='col-xs-12 col-sm-4 col-md-3'>";
-                                    print "<div class='product-data'>";
-                                        print "<img src='assests/images/".$row["product_image"]."'>";
-                                        print "<b>".$row["product_name"] . "</b><br/>";
-                                        print "<p>".substr($row['product_desc'],0,30). "</p>";
-                                        print "<p>Price: &#8377;".$row["product_rate"]."</p>";
-                                    print "</div>";
-                                print "</div>";
-                                $counter = ++$counter;
-                                if(($counter) % 4 == 0){
-                                    print "<div class='clearfix'></div>";
-                                }
-                            }
-                        }
-                    ?>
+require_once 'include/classes/class.user.php';
+$user = new USER;
+
+if (isset($_POST['go'])) {
+
+    $search = $_POST['search'];
+    try {
+        $result = $user->runQuery("SELECT * FROM products WHERE CONCAT (product_name, product_desc, product_rate) LIKE '%" .
+            $search . "%' AND category_id = 1");
+        $result->execute();
+        displayData($result);
+    }
+    catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+
+} else {
+    try {
+        $result = $user->runQuery("SELECT * FROM products WHERE category_id = 1");
+        $result->execute();
+        displayData($result);
+    }
+    catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+}
+
+function displayData($result)
+{
+    $counter = 0;
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        print "<div class='col-xs-12 col-sm-4 col-md-3'>";
+        print "<div class='product-data'>";
+        print "<img src='assests/images/" . $row["product_image"] . "'>";
+        print "<b>" . $row["product_name"] . "</b><br/>";
+        print "<p>" . substr($row['product_desc'], 0, 30) . "</p>";
+        print "<p>Price: &#8377;" . $row["product_rate"] . "</p>";
+        print "</div>";
+        print "</div>";
+        $counter = ++$counter;
+        if (($counter) % 4 == 0) {
+            print "<div class='clearfix'></div>";
+        }
+    }
+}
+?>
             </div>
         </div>
     </section>

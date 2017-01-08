@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    include_once('config/config.php');
-    include_once('config/init.php');
-    $id = $_GET['id'];
+session_start();
+include_once ('config/config.php');
+include_once ('config/init.php');
+$id = $_GET['id'];
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,15 +55,16 @@
                     <div class="user-account">
                         <ul>
                             <?php
-                                if(isset($_SESSION['authenticatedUserName'])){
-                                    $user_name = $_SESSION['authenticatedUserName'];
-                                    echo "<li><a href='logout.php'>log out</a></li>
-                                    <li><a href='myAccount.php'>".$user_name."</a></li>";
-                                }else{
-                                    echo "<li><a href='login.php'>log in</a></li>
+if (isset($_SESSION['authenticatedUserName'])) {
+    $user_name = $_SESSION['authenticatedUserName'];
+    echo "<li><a href='logout.php'>log out</a></li>
+                                    <li><a href='myAccount.php'>" . $user_name .
+        "</a></li>";
+} else {
+    echo "<li><a href='login.php'>log in</a></li>
                                     <li><a href='admin/index.php'>admin panel</a></li>";
-                                }
-                            ?>
+}
+?>
                         </ul>
                     </div>
                 </div>
@@ -80,46 +81,48 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
-                    <h3>You can manage your basic information &#45; your name, your email, your password, your DOB, your phonenumber, your gender. <a href="updateMyAccount.php?id=<?php echo $id ?>">here</a></h3>
+                    <h3>You can manage your basic information &#45; your name, your email, your password, your DOB, your phonenumber, your gender. <a href="updateMyAccount.php?id=<?php echo
+$id ?>">here</a></h3>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="my-account-table">
                         <table>
                         <?php
-                            function displayData($result)
-                            {
-                                $counter = 0;
-                                while ($row = $result->fetch_assoc()) {
-                                    print "<tr>
+function displayData($result)
+{
+    $counter = 0;
+    while ($row = $result->fetch_assoc()) {
+        print "<tr>
                                             <td>name</td>
-                                            <td>".$row['firstname']." ".$row['lastname']."</td>
+                                            <td>" . $row['firstname'] . " " . $row['lastname'] .
+            "</td>
                                         </tr>";
-                                    print "<tr>
+        print "<tr>
                                             <td>email</td>
-                                            <td>".$row['email']."</td>
+                                            <td>" . $row['email'] . "</td>
                                         </tr>";
-                                    print "<tr>
+        print "<tr>
                                             <td>password</td>
-                                            <td>".$row['password']."</td>
+                                            <td>" . $row['password'] . "</td>
                                         </tr>";
-                                    print "<tr>
+        print "<tr>
                                             <td>dat of birth</td>
-                                            <td>".$row['dob']."</td>
+                                            <td>" . $row['dob'] . "</td>
                                         </tr>";
-                                    print "<tr>
+        print "<tr>
                                             <td>phone numer</td>
-                                            <td>".$row['phonenumber']."</td>
+                                            <td>" . $row['phonenumber'] . "</td>
                                         </tr>";
-                                    print "<tr>
+        print "<tr>
                                             <td>gender</td>
-                                            <td>".$row['gender']."</td>
+                                            <td>" . $row['gender'] . "</td>
                                         </tr>";
-                                }
-                            }
-                            //Select Data
-                            $result = $mysqli->query("SELECT * FROM users WHERE user_id = $id");
-                            displayData($result);
-                        ?>
+    }
+}
+//Select Data
+$result = $mysqli->query("SELECT * FROM users WHERE user_id = $id");
+displayData($result);
+?>
                         </table>
                         
                     </div>
@@ -129,5 +132,5 @@
 </section>
 
 <?php
-include_once('footer.php');
+include_once ('footer.php');
 ?>

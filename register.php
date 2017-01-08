@@ -44,7 +44,7 @@ session_start();
                         <ul>
                             <li><a href="topwear.php">top wear</a></li>
                             <li><a href="#">foot wear</a></li>
-                            <li><a href="#">accessories</a></li>
+                            <li><a href="accessories.php">accessories</a></li>
                             <li><a href="#">contact us</a></li>
                         </ul>
                     </div>
@@ -80,12 +80,13 @@ session_start();
                             <input name="password" type="password" placeholder="PASSWORD" />
                             <input name="repassword" type="password" placeholder="CONFIRM PASSWORD"/>
                             <?php
-                                if(isset($_SESSION['message'])){
-                                    echo "<p>".$_SESSION['message']."</p>";
-                                }else if(isset($_SESSION['resmessage'])){
-                                    echo "<span style = 'color=green;'>".$_SESSION['remessage']."</span>";
-                                }
-                            ?>
+if (isset($_SESSION['message'])) {
+    echo "<p>" . $_SESSION['message'] . "</p>";
+} else
+    if (isset($_SESSION['resmessage'])) {
+        echo "<span style = 'color=green;'>" . $_SESSION['remessage'] . "</span>";
+    }
+?>
                             <input type="submit" name="register" value="REGISTER"/>  
                         </form>
                         <ul>
