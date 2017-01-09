@@ -116,4 +116,5 @@ class USER
         $mail->MsgHTML($message);
         $mail->Send();
     }
+
 }

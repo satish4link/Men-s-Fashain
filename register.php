@@ -26,6 +26,8 @@ session_start();
 	<script src="assests/js/isotope.pkgd.min.js"></script>
 	<script src="assests/js/custom.js"></script>
     <script src="slick/slick.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
 </head>
 <body>
@@ -76,7 +78,8 @@ session_start();
                         <form method="post" action="registervalidation.php">
                             <input name="fname" type="text" placeholder="FIRST NAME" />
                             <input name="lname" type="text" placeholder="LAST NAME" />
-                            <input name="email" type="text" placeholder="EMAIL" />
+                            <input name="email" id="email" type="email" placeholder="EMAIL" onkeyup="checkemailValid();"/>
+                            <span id="freevalid">  </span>
                             <input name="password" type="password" placeholder="PASSWORD" />
                             <input name="repassword" type="password" placeholder="CONFIRM PASSWORD"/>
                             <?php
@@ -89,6 +92,34 @@ if (isset($_SESSION['message'])) {
 ?>
                             <input type="submit" name="register" value="REGISTER"/>  
                         </form>
+                        <script>
+                        function checkemailValid(){
+                            var emailValue = document.getElementById( "email" ).value; //Data collected from form field
+                            
+                             $.ajax({
+                                 type: "POST",
+                                 url: "ajax/checkingEmail.php",
+                                 data: {email:emailValue}    //Key,value pair to be sent
+                                 }).done(function( result ) {
+                                    $("#freevalid").html(result);
+                                    if(result=="OK"){
+                                        
+                                                                    $('#freevalid').css('color', 'yellow');
+                                                                
+                                                                    $("#submit").prop('disabled', false);
+        
+                                    }
+                                    else{
+                                        $('#freevalid').css('color', 'red');
+                                         
+                                         
+                                    }
+                             });
+        
+        
+                        }
+        
+                </script>
                         <ul>
                             <li>already have an account? <a href="login.php">sign in.</a></li>
                         </ul>

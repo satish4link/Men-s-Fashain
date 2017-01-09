@@ -21,8 +21,7 @@
 
 	<!-- jQuery link-->
 	<script src="assests/js/jquery-1.12.2.js"></script>
-	<script src="assests/js/isotope.pkgd.min.js"></script>
-	<script src="ajax/ajax2.js"></script>
+	<script src="angular/angular.min.js"></script>
 
 </head>
 <body>
@@ -76,7 +75,9 @@ if (isset($_SESSION['authenticatedUserName'])) {
                         <h2>top wear products</h2>
                     </div>
                 </div>
-                <div class="result">No Products Found</div>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    
+                </div>
             </div>
         </div>
     </section>
