@@ -1,5 +1,4 @@
 <?php
-
 require_once 'dbconfig.php';
 
 class USER
@@ -54,7 +53,7 @@ class USER
                 if ($userRow['active'] == "1") {
                     if ($userRow['password'] == md5($password)) {
                         $_SESSION['userSession'] = $userRow['user_id'];
-                        $_SESSION['userSessionName'] = $userRow['fname'];
+                        $_SESSION['userSessionName'] = $userRow['firstname'];
 
                         return true;
                     } else {
@@ -105,6 +104,13 @@ class USER
         $mail->SMTPDebug = 0;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = "tls";
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
         $mail->Host = "smtp.gmail.com";
         $mail->Port = 587;
         $mail->AddAddress($email);

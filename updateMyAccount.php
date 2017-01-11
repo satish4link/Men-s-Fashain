@@ -1,7 +1,7 @@
 <?php
     session_start();
-    include_once('config/config.php');
-    include_once('config/init.php');
+    require_once 'include/classes/class.user.php';
+    $user = new USER;
     $id = $_GET['id'];
 ?><!DOCTYPE html>
 <html lang="en">
@@ -54,14 +54,15 @@
                     <div class="user-account">
                         <ul>
                             <?php
-                                if(isset($_SESSION['authenticatedUserName'])){
-                                    $user_name = $_SESSION['authenticatedUserName'];
-                                    echo "<li><a href='logout.php'>log out</a></li>
-                                    <li><a href='myAccount.php'>".$user_name."</a></li>";
-                                }else{
-                                    echo "<li><a href='login.php'>log in</a></li>
-                                    <li><a href='admin/index.php'>admin panel</a></li>";
-                                }
+                            if (isset($_SESSION['userSessionName'])) {
+                                $user_name = $_SESSION['userSessionName'];
+                                $user_id = $_SESSION["userSession"];
+                                echo "<li><a href='logout.php'>log out</a></li>
+                                                                <li><a href='myAccount.php?id=$user_id'>" .$user_name . "</a></li>";
+                            } else {
+                                echo "<li><a href='login.php'>log in</a></li>
+                                                                <li><a href='register.php'>register</a></li>";
+                            }
                             ?>
                         </ul>
                     </div>
@@ -106,12 +107,15 @@
                                     }else if(!ctype_digit($number)){
                                         echo "<p>Phone number should be numeric.</p>";
                                     }else{
-                                    $result = $mysqli->query("UPDATE users SET firstname = '$fname', lastname = '$lname', email = '$email', password = '$password', dob = '$dob', phonenumber = '$number', gender = '$gender' WHERE user_id = '$id'");
-                                        if($result){
-                    					   echo "<p>Data Updated.</p>";
-                    					}else{
-                    					   echo $mysqli->error;
-                    					}
+                                        try {
+                                            $result = $user->runQuery("UPDATE users SET firstname = '$fname', lastname = '$lname', email = '$email', password = '$password', dob = '$dob', phonenumber = '$number', gender = '$gender' WHERE user_id = '$id'");
+                                            $result->execute();
+                                            if($result){
+                    						   echo "<p>Data Updated.</p>";
+                    						}
+                                        }catch (PDOException $ex) {
+                                            echo $ex->getMessage();
+                                        }
                                     }
                                 }	
                             }
@@ -119,10 +123,20 @@
                         <form method="post">
                         <table>
                         <?php
+                            
+                            try {
+                                $result = $user->runQuery("SELECT * FROM users WHERE user_id = $id");
+                                $result->execute();
+                                displayData($result);
+                            }
+                            catch (PDOException $ex) {
+                                echo $ex->getMessage();
+                            }
+                            
                             function displayData($result)
                             {
                                 $counter = 0;
-                                while ($row = $result->fetch_assoc()) {
+                                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                     print "<tr>
                                             <td>first name</td>
                                             <td><input name='fname' type='text' value='".$row['firstname']."'/></td>
@@ -158,9 +172,6 @@
                                         </tr>";
                                 }
                             }
-                            //Select Data
-                            $result = $mysqli->query("SELECT * FROM users WHERE user_id = $id");
-                            displayData($result);
                         ?>
                         </table>
                         <input type='submit' value='UPDATE' name='update' />

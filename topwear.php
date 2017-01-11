@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -50,17 +52,16 @@
                     <div class="user-account">
                         <ul>
                             <?php
-if (isset($_SESSION['authenticatedUserName'])) {
-    $user_name = $_SESSION['authenticatedUserName'];
-    $user_id = $_SESSION["userID"];
-    echo "<li><a href='logout.php'>log out</a></li>
-                                    <li><a href='myAccount.php?id=$user_id'>" .
-        $user_name . "</a></li>";
-} else {
-    echo "<li><a href='login.php'>log in</a></li>
-                                    <li><a href='register.php'>register</a></li>";
-}
-?>
+                            if (isset($_SESSION['userSessionName'])) {
+                                $user_name = $_SESSION['userSessionName'];
+                                $user_id = $_SESSION["userSession"];
+                                echo "<li><a href='logout.php'>log out</a></li>
+                                                                <li><a href='myAccount.php?id=$user_id'>" .$user_name . "</a></li>";
+                            } else {
+                                echo "<li><a href='login.php'>log in</a></li>
+                                                                <li><a href='register.php'>register</a></li>";
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>

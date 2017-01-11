@@ -42,9 +42,9 @@ session_start();
                     <div class="menubar">
                         <ul>
                             <li><a href="topwear.php">top wear</a></li>
-                            <li><a href="#">foot wear</a></li>
+                            <li><a href="bottomwear.php">foot wear</a></li>
                             <li><a href="accessories.php">accessories</a></li>
-                            <li><a href="#">contact us</a></li>
+                            <li><a href="about.php">contact us</a></li> 
                         </ul>
                     </div>
 				</div>
@@ -52,17 +52,16 @@ session_start();
                     <div class="user-account">
                         <ul>
                             <?php
-if (isset($_SESSION['authenticatedUserName'])) {
-    $user_name = $_SESSION['authenticatedUserName'];
-    $user_id = $_SESSION["userID"];
-    echo "<li><a href='logout.php'>log out</a></li>
-                                    <li><a href='myAccount.php?id=$user_id'>" .
-        $user_name . "</a></li>";
-} else {
-    echo "<li><a href='login.php'>log in</a></li>
-                                    <li><a href='register.php'>register</a></li>";
-}
-?>
+                            if (isset($_SESSION['userSessionName'])) {
+                                $user_name = $_SESSION['userSessionName'];
+                                $user_id = $_SESSION["userSession"];
+                                echo "<li><a href='logout.php'>log out</a></li>
+                                                                <li><a href='myAccount.php?id=$user_id'>" .$user_name . "</a></li>";
+                            } else {
+                                echo "<li><a href='login.php'>log in</a></li>
+                                                                <li><a href='register.php'>register</a></li>";
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>

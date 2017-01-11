@@ -1,7 +1,5 @@
 <?php
 session_start();
-include_once ('config/config.php');
-include_once ('config/init.php');
 $id = $_GET['id'];
 ?><!DOCTYPE html>
 <html lang="en">
@@ -45,7 +43,7 @@ $id = $_GET['id'];
                     <div class="menubar">
                         <ul>
                             <li><a href="topwear.php">top wear</a></li>
-                            <li><a href="footwear.php">foot wear</a></li>
+                            <li><a href="bottomwear.php">foot wear</a></li>
                             <li><a href="accesories.php">accessories</a></li>
                             <li><a href="about.php">contact us</a></li>
                         </ul>
@@ -55,16 +53,16 @@ $id = $_GET['id'];
                     <div class="user-account">
                         <ul>
                             <?php
-if (isset($_SESSION['authenticatedUserName'])) {
-    $user_name = $_SESSION['authenticatedUserName'];
-    echo "<li><a href='logout.php'>log out</a></li>
-                                    <li><a href='myAccount.php'>" . $user_name .
-        "</a></li>";
-} else {
-    echo "<li><a href='login.php'>log in</a></li>
-                                    <li><a href='admin/index.php'>admin panel</a></li>";
-}
-?>
+                            if (isset($_SESSION['userSessionName'])) {
+                                $user_name = $_SESSION['userSessionName'];
+                                $user_id = $_SESSION["userSession"];
+                                echo "<li><a href='logout.php'>log out</a></li>
+                                                                <li><a href='myAccount.php?id=$user_id'>" .$user_name . "</a></li>";
+                            } else {
+                                echo "<li><a href='login.php'>log in</a></li>
+                                                                <li><a href='register.php'>register</a></li>";
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -88,10 +86,23 @@ $id ?>">here</a></h3>
                     <div class="my-account-table">
                         <table>
                         <?php
+                        
+                        require_once 'include/classes/class.user.php';
+                        $user = new USER;
+                        
+                        try {
+                            $result = $user->runQuery("SELECT * FROM users WHERE user_id = $id");
+                            $result->execute();
+                            displayData($result);
+                        }
+                        catch (PDOException $ex) {
+                            echo $ex->getMessage();
+                        }
+                        
 function displayData($result)
 {
     $counter = 0;
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         print "<tr>
                                             <td>name</td>
                                             <td>" . $row['firstname'] . " " . $row['lastname'] .
@@ -119,9 +130,7 @@ function displayData($result)
                                         </tr>";
     }
 }
-//Select Data
-$result = $mysqli->query("SELECT * FROM users WHERE user_id = $id");
-displayData($result);
+
 ?>
                         </table>
                         

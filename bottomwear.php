@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -42,6 +44,7 @@
                             <li><a href="topwear.php">top wear</a></li>
                             <li><a href="bottomwear.php">bottom wear</a></li>
                             <li><a href="accessories.php">accessories</a></li>
+                            <li><a href="about.php">contact us</a></li>
                         </ul>
                     </div>
 				</div>
@@ -49,17 +52,16 @@
                     <div class="user-account">
                         <ul>
                             <?php
-if (isset($_SESSION['authenticatedUserName'])) {
-    $user_name = $_SESSION['authenticatedUserName'];
-    $user_id = $_SESSION["userID"];
-    echo "<li><a href='logout.php'>log out</a></li>
-                                    <li><a href='myAccount.php?id=$user_id'>" .
-        $user_name . "</a></li>";
-} else {
-    echo "<li><a href='login.php'>log in</a></li>
-                                    <li><a href='register.php'>register</a></li>";
-}
-?>
+                            if (isset($_SESSION['userSessionName'])) {
+                                $user_name = $_SESSION['userSessionName'];
+                                $user_id = $_SESSION["userSession"];
+                                echo "<li><a href='logout.php'>log out</a></li>
+                                                                <li><a href='myAccount.php?id=$user_id'>" .$user_name . "</a></li>";
+                            } else {
+                                echo "<li><a href='login.php'>log in</a></li>
+                                                                <li><a href='register.php'>register</a></li>";
+                            }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -73,20 +75,50 @@ if (isset($_SESSION['authenticatedUserName'])) {
             <div class="container">
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="top-wear-content">
-                        <h2>top wear products</h2>
+                        <h2>bottom wear products</h2>
                     </div>
                 </div>
+                <div class="col-xs-12 col-sm-12 col-md-4"></div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <div class="filter-data">
+                        <table>
+                            <tr>
+                            <form method="post">
+                                <td><input type="text" placeholder="Search, What are you looking for..." name="search" style="width: 300px; padding: 5px;" /></td>
+                                <td><input type="submit" value="Go" name="go" style="padding: 5px 10px;"/></td>
+                            </form>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4"></div>
+                <div class="clearfix"></div>
                     <?php
 require_once 'include/classes/class.user.php';
 $user = new USER;
 
-try {
-    $result = $user->runQuery("SELECT * FROM products WHERE category_id = 2");
-    $result->execute();
-    displayData($result);
-}
-catch (PDOException $ex) {
-    echo $ex->getMessage();
+if (isset($_POST['go'])) {
+
+    $search = $_POST['search'];
+    try {
+        $result = $user->runQuery("SELECT * FROM products WHERE CONCAT (product_name, product_desc, product_rate) LIKE '%" .
+            $search . "%' AND category_id = 2");
+        $result->execute();
+        displayData($result);
+    }
+    catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
+
+} else {
+    try {
+        $result = $user->runQuery("SELECT * FROM products WHERE category_id = 2");
+        $result->execute();
+        displayData($result);
+    }
+    catch (PDOException $ex) {
+        echo $ex->getMessage();
+    }
 }
 
 function displayData($result)

@@ -1,0 +1,12 @@
+Admin panel
+---------------
+user     : admin
+password : admin
+
+
+Front End login
+---------------
+Email    : satish4link@gmail.com
+password : hello
+
+you can also register a new one.
