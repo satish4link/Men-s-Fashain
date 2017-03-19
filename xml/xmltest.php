@@ -1,30 +1,42 @@
 <?php
 include('../include/classes/class.user.php');
-$sql="select * from destinations";
-$objdb=new Main();
-$objdb->query($sql);
-$data=$objdb->fetchAllRecords();
+$sql="select * from products";
+$objdb=new User();
+$result = $objdb->runQuery($sql);
+$result->execute();
+
+$data = $result->fetchAll(PDO::FETCH_ASSOC);
+
+//$data=$objdb->fetchAllRecords();
 
 $xml= new DOMDocument("1.0");
 $xml->formatOutput=true;
-$destinationss=$xml->createElement("destinationss");
-$xml->appendChild($destinationss);
+$strings=$xml->createElement("strings");
+$xml->appendChild($strings);
 
 foreach($data as $row){
- $destinations=$xml->createElement("destinations");
- $destinationss->appendChild($destinations);
+ $products=$xml->createElement("products");
+ $strings->appendChild($products);
 
- $author=$xml->createElement("Id",$row['id']);
- $destinations->appendChild($author);
- $title=$xml->createElement("City",$row['city']);
- $destinations->appendChild($title);
- $description=$xml->createElement("Description",$row['description']);
- $destinations->appendChild($description);
- $category=$xml->createElement("Price",$row['price']);
- $destinations->appendChild($category);
+ $prod_id = $row['product_id'];
+ $cat_id = $row['category_id'];
+ $prod_name = $row['product_name'];
+ $prod_desc = $row['product_desc'];
+ $prod_rate = $row['product_rate'];
+
+ $product_id=$xml->createElement("ProductID", $prod_id);
+ $products->appendChild($product_id);
+ $category_id=$xml->createElement("CategoryID", $cat_id);
+ $products->appendChild($category_id);
+ $product_name=$xml->createElement("ProductName", $prod_name);
+ $products->appendChild($product_name);
+ $desc=$xml->createElement("ProductDESC", $prod_desc);
+ $products->appendChild($desc);
+ $rate=$xml->createElement("ProductRate", $prod_rate);
+ $products->appendChild($rate);
 }
 
 echo"<xmp>".$xml->saveXML()."</xml>";
-$xml->save("destinationss.xml");
+$xml->save("strings.xml");
 
 ?>

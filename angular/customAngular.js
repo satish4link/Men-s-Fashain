@@ -1,6 +1,10 @@
-// read products
-$scope.getAll = function(){
-    $http.get("productsData.php").success(function(response){
-        $scope.names = response.records;
-    });
-}
+
+var app = angular.module('rjtApp', []);
+app.controller('projectsController', function($scope, $http){
+   getProject();
+   function getProject(){
+        $http.post("productsData.php").success(function(data){
+            $scope.projects = data;
+        });
+   } 
+});

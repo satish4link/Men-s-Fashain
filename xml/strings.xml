@@ -1,108 +1,241 @@
 <?xml version="1.0"?>
 <strings>
   <products>
-    <ID>1</ID>
+    <ProductID>1</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Hoodie</Name>
-    <Rate>1100</Rate>
-    <Rate>1.0x0.jpg</Rate>
+    <ProductName>Hoodie</ProductName>
+    <ProductDESC>Summer Hoodie for men</ProductDESC>
+    <ProductRate>1100</ProductRate>
   </products>
   <products>
-    <ID>2</ID>
+    <ProductID>2</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Hoodie</Name>
-    <Rate>1600</Rate>
-    <Rate>nike-best-aw77-half-zip-mens-hoodie.jpg</Rate>
+    <ProductName>Hoodie</ProductName>
+    <ProductDESC>Nike best aw77 half zip mens hoodie</ProductDESC>
+    <ProductRate>1600</ProductRate>
   </products>
   <products>
-    <ID>3</ID>
+    <ProductID>3</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Hoodie</Name>
-    <Rate>1800</Rate>
-    <Rate>s-l1000.jpg</Rate>
+    <ProductName>Hoodie</ProductName>
+    <ProductDESC>Mens Cowl Neck Hoodie</ProductDESC>
+    <ProductRate>1800</ProductRate>
   </products>
   <products>
-    <ID>4</ID>
+    <ProductID>4</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Hoodie</Name>
-    <Rate>2200</Rate>
-    <Rate>7ed80e5772d6328829c7add2928b3542.jpg</Rate>
+    <ProductName>Hoodie</ProductName>
+    <ProductDESC>Tokyo Tigers Horten Aztec Print Pullover Hoodie Hoody Hooded Top </ProductDESC>
+    <ProductRate>2200</ProductRate>
   </products>
   <products>
-    <ID>5</ID>
+    <ProductID>5</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Leather Jacket</Name>
-    <Rate>1700</Rate>
-    <Rate>1438728825207-P-2916320.jpg</Rate>
+    <ProductName>Leather Jacket</ProductName>
+    <ProductDESC>PU Leather Stand Collar Horizontal Zipper Epaulet Rib Spliced Long Sleeves Mens Slimming Jacket</ProductDESC>
+    <ProductRate>1700</ProductRate>
   </products>
   <products>
-    <ID>6</ID>
+    <ProductID>6</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Leather Jacket</Name>
-    <Rate>3200</Rate>
-    <Rate>1447812673525-P-3464558.jpg</Rate>
+    <ProductName>Leather Jacket</ProductName>
+    <ProductDESC>Stand Collar Solid Color Multi-Pocket Long Sleeve Mens PU-Leather Jacket</ProductDESC>
+    <ProductRate>3200</ProductRate>
   </products>
   <products>
-    <ID>7</ID>
+    <ProductID>7</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Leather Jacket</Name>
-    <Rate>2200</Rate>
-    <Rate>1443050487403-P-3164497.jpg</Rate>
+    <ProductName>Leather Jacket</ProductName>
+    <ProductDESC>Slimming Rib Stand Collar Multi-Zipper Epaulet Design Long Sleeves Mens PU Leather Motorcycle Jacket</ProductDESC>
+    <ProductRate>2200</ProductRate>
   </products>
   <products>
-    <ID>8</ID>
+    <ProductID>8</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Leather Jacket</Name>
-    <Rate>2600</Rate>
-    <Rate>20160906101300_35902.jpg</Rate>
+    <ProductName>Leather Jacket</ProductName>
+    <ProductDESC>Slim-Fit Zipper-Up Faux Leather Biker Jacket</ProductDESC>
+    <ProductRate>2600</ProductRate>
   </products>
   <products>
-    <ID>9</ID>
+    <ProductID>9</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Sweater</Name>
-    <Rate>800</Rate>
-    <Rate>Dioufond-New-Pullover-font-b-Men-b-font-Gradient-O-Neck-font-b-Mens-b-font.jpg</Rate>
+    <ProductName>Sweater</ProductName>
+    <ProductDESC>Dioufond New Pullover Men Gradient O-Neck Mens Sweaters Long Sleeve Sueter Hombre Fashion Sweater</ProductDESC>
+    <ProductRate>800</ProductRate>
   </products>
   <products>
-    <ID>10</ID>
+    <ProductID>10</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Sweater</Name>
-    <Rate>950</Rate>
-    <Rate>Hot-sale-brand-font-b-sweater-b-font-new-font-b-design-b-font-font-b.jpg</Rate>
+    <ProductName>Sweater</ProductName>
+    <ProductDESC>Hot sale brand sweater new design men casual slim style sweater man thick sweater pullover winter</ProductDESC>
+    <ProductRate>950</ProductRate>
   </products>
   <products>
-    <ID>11</ID>
+    <ProductID>11</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Sweater</Name>
-    <Rate>1200</Rate>
-    <Rate>-font-b-Men-b-font-font-b-Polo-b-font-font-b-Sweater-b-font.jpg</Rate>
+    <ProductName>Sweater</ProductName>
+    <ProductDESC>Men Polo Sweater Brand Design Autumn Winter Warm Pullovers Knitted Sweater Male Slim Fit Euro Size</ProductDESC>
+    <ProductRate>1200</ProductRate>
   </products>
   <products>
-    <ID>12</ID>
+    <ProductID>12</ProductID>
     <CategoryID>1</CategoryID>
-    <Name>Sweater</Name>
-    <Rate>1800</Rate>
-    <Rate>New-Winter-Fashion-Warm-Thick-Cardigan-font-b-Sweaters-b-font-font-b-Zipper-b-font.jpg</Rate>
+    <ProductName>Sweater</ProductName>
+    <ProductDESC>New Winter Fashion Warm Thick Cardigan Sweaters Zipper Design Stand Collar Casual Men Sweater Solid Coat Pattern Knitwear M-3XL</ProductDESC>
+    <ProductRate>1800</ProductRate>
   </products>
   <products>
-    <ID>14</ID>
+    <ProductID>14</ProductID>
     <CategoryID>2</CategoryID>
-    <Name>miami university</Name>
-    <Rate>123456</Rate>
-    <Rate>deepika-padukone-150a.jpg</Rate>
+    <ProductName>Blue Jeans</ProductName>
+    <ProductDESC>Man pants fashion 2016 ripped jeans, network burst models Slim demin pants.</ProductDESC>
+    <ProductRate>1250</ProductRate>
   </products>
   <products>
-    <ID>15</ID>
+    <ProductID>15</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Blue Jeans</ProductName>
+    <ProductDESC>2015 Fashion Brand Classic Mens Tapered Jeans Robin Jeans Pants Men Denim Pants Male Ripped Hole</ProductDESC>
+    <ProductRate>1650</ProductRate>
+  </products>
+  <products>
+    <ProductID>16</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Blue Jeans</ProductName>
+    <ProductDESC>Gratis pengiriman kedatangan baru denim jins busana pria, Pria jins kapas, Merek jins, Lurus ramping denim panjang lakilaki ukuran 28 to 44(China (Mainland))</ProductDESC>
+    <ProductRate>2100</ProductRate>
+  </products>
+  <products>
+    <ProductID>17</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Black Jeans</ProductName>
+    <ProductDESC>Black Sid skinny stretch jeans</ProductDESC>
+    <ProductRate>2500</ProductRate>
+  </products>
+  <products>
+    <ProductID>18</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Black Jeans</ProductName>
+    <ProductDESC>express view skinny fit skinny leg performance stretch black jeans</ProductDESC>
+    <ProductRate>2200</ProductRate>
+  </products>
+  <products>
+    <ProductID>19</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Black Jeans</ProductName>
+    <ProductDESC>ASOS Skinny Jeans With Knee Rips In Black</ProductDESC>
+    <ProductRate>2100</ProductRate>
+  </products>
+  <products>
+    <ProductID>20</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Black Jeans</ProductName>
+    <ProductDESC>Men Black Jeans RIe268sN</ProductDESC>
+    <ProductRate>2600</ProductRate>
+  </products>
+  <products>
+    <ProductID>21</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Black Jeans</ProductName>
+    <ProductDESC>2016 New Black Ripped Jeans Men With Holes Denim Super Skinny Famous Designer Brand Slim Fit</ProductDESC>
+    <ProductRate>2600</ProductRate>
+  </products>
+  <products>
+    <ProductID>22</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Black Jeans</ProductName>
+    <ProductDESC>2014 new fashion men faux leather jeans pant mens skinny leather denim pants trousers 28</ProductDESC>
+    <ProductRate>3000</ProductRate>
+  </products>
+  <products>
+    <ProductID>23</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Track for men</ProductName>
+    <ProductDESC>China Track Pants, China Track Pants Manufacturers and Suppliers on Alibaba.com</ProductDESC>
+    <ProductRate>2200</ProductRate>
+  </products>
+  <products>
+    <ProductID>24</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Track</ProductName>
+    <ProductDESC>Mens Soft Slim Fit Casual Sports Track Pants</ProductDESC>
+    <ProductRate>1250</ProductRate>
+  </products>
+  <products>
+    <ProductID>25</ProductID>
+    <CategoryID>2</CategoryID>
+    <ProductName>Track</ProductName>
+    <ProductDESC>Men Grey Melange Track Pants</ProductDESC>
+    <ProductRate>1500</ProductRate>
+  </products>
+  <products>
+    <ProductID>26</ProductID>
     <CategoryID>3</CategoryID>
-    <Name>glassed</Name>
-    <Rate>12345689</Rate>
-    <Rate>deepika-padukone-150a.jpg</Rate>
+    <ProductName>Rayban Glasses</ProductName>
+    <ProductDESC>Ray-Ban Clubmaster Classic</ProductDESC>
+    <ProductRate>900</ProductRate>
   </products>
   <products>
-    <ID>16</ID>
-    <CategoryID>1</CategoryID>
-    <Name>sdfghjk</Name>
-    <Rate>12345</Rate>
-    <Rate/>
+    <ProductID>27</ProductID>
+    <CategoryID>3</CategoryID>
+    <ProductName>Rayban Glasses</ProductName>
+    <ProductDESC>Eyeglasses, Ray bans and 60s style</ProductDESC>
+    <ProductRate>800</ProductRate>
+  </products>
+  <products>
+    <ProductID>28</ProductID>
+    <CategoryID>3</CategoryID>
+    <ProductName>Rayban Glasses</ProductName>
+    <ProductDESC>prices of ray ban glasses oakley sunglasses ray ban 4141</ProductDESC>
+    <ProductRate>500</ProductRate>
+  </products>
+  <products>
+    <ProductID>29</ProductID>
+    <CategoryID>3</CategoryID>
+    <ProductName>Watch</ProductName>
+    <ProductDESC>Daniel Wellington Watch</ProductDESC>
+    <ProductRate>5000</ProductRate>
+  </products>
+  <products>
+    <ProductID>30</ProductID>
+    <CategoryID>3</CategoryID>
+    <ProductName>Stainless Steel Watch</ProductName>
+    <ProductDESC>Gucci Black Stainless Steel Watch for Men 2016</ProductDESC>
+    <ProductRate>2500</ProductRate>
+  </products>
+  <products>
+    <ProductID>31</ProductID>
+    <CategoryID>3</CategoryID>
+    <ProductName>Watch</ProductName>
+    <ProductDESC>Wrist Watches For Men 2015</ProductDESC>
+    <ProductRate>6500</ProductRate>
+  </products>
+  <products>
+    <ProductID>32</ProductID>
+    <CategoryID>3</CategoryID>
+    <ProductName>Wallet</ProductName>
+    <ProductDESC>Men Hasp Wallet Leather Purse Trifold Wallets For Man High Quality Big Capacity Credit Crad Holders</ProductDESC>
+    <ProductRate>1200</ProductRate>
+  </products>
+  <products>
+    <ProductID>33</ProductID>
+    <CategoryID>3</CategoryID>
+    <ProductName>Wallet</ProductName>
+    <ProductDESC>Men Hasp Wallet Leather Purse Trifold Wallets For Man High Quality Big Capacity Credit Crad Holders</ProductDESC>
+    <ProductRate>1100</ProductRate>
+  </products>
+  <products>
+    <ProductID>34</ProductID>
+    <CategoryID>3</CategoryID>
+    <ProductName>Bag</ProductName>
+    <ProductDESC>Khaki-Leather-bag-Genuine-leather-canvas-bag-Men-</ProductDESC>
+    <ProductRate>3500</ProductRate>
+  </products>
+  <products>
+    <ProductID>35</ProductID>
+    <CategoryID>3</CategoryID>
+    <ProductName>Bag</ProductName>
+    <ProductDESC>Khaki-Leather-bag-Genuine-leather-canvas-bag-Men-</ProductDESC>
+    <ProductRate>2500</ProductRate>
   </products>
 </strings>

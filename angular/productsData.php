@@ -41,5 +41,5 @@ if($num>0){
 } 
  
 // json format output 
-echo '{"records":[' . $data . ']}'; 
+echo $json_response = json_encode($data);
 ?>
